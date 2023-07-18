@@ -1,1 +1,1 @@
-console.log('heu');
+import '@/styles/global.scss'

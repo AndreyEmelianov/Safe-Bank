@@ -1,7 +1,6 @@
 import ChildComponent from '../component/child.component'
 
 class RenderService {
-	//htmlToElement
 	/**
 	 * @param {string} html
 	 * @param {Array} components
@@ -13,6 +12,10 @@ class RenderService {
 		template.innerHTML = html.trim()
 
 		const element = template.content.firstChild
+
+		if (styles) {
+			this.#applyModuleStyles(styles, element)
+		}
 
 		this.#replaceComponentTags(element, components)
 
@@ -55,7 +58,31 @@ class RenderService {
 			}
 		}
 	}
-	// #applyModuleStyles
+
+	/**
+	 * @param {Object} moduleStyles
+	 * @param {string} element
+	 * @param {void}
+	 */
+	#applyModuleStyles(moduleStyles, element) {
+		if (!element) return
+
+		const applyStyles = element => {
+			for (const [key, value] of Object.entries(moduleStyles)) {
+				if (element.classList.contains(key)) {
+					element.classList.remove(key)
+					element.classList.add(value)
+				}
+			}
+		}
+
+		if (element.getAttribute('class')) {
+			applyStyles(element)
+		}
+
+		const elements = element.querySelectorAll('*')
+		elements.forEach(applyStyles)
+	}
 }
 
 export default new RenderService()

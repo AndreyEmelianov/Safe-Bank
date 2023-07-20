@@ -58,6 +58,15 @@ class MyLib {
 		}
 	}
 
+	text(textContent) {
+		if (typeof textContent === 'undefined') {
+			return this.element.textContent
+		} else {
+			this.element.textContent = textContent
+			return this
+		}
+	}
+
 	/* EVENTS */
 
 	click(callback) {
@@ -152,6 +161,19 @@ class MyLib {
 		}
 
 		return this
+	}
+
+	attr(attributeName, value) {
+		if (typeof attributeName !== 'string') {
+			throw new Error('Attribute Name must be a string')
+		}
+
+		if (typeof value === 'undefined') {
+			return this.element.getAttribute(attributeName)
+		} else {
+			this.element.setAttribute(attributeName, value)
+			return this
+		}
 	}
 }
 

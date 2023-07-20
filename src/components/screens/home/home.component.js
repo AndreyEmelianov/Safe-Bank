@@ -15,6 +15,6 @@ export class Home extends BaseScreen {
 		const element = renderService.htmlToElement(template, [], styles)
 
 		$ML(element).find('h1').css('color', 'black')
-		return element.outerHTML
+		return element
 	}
 }

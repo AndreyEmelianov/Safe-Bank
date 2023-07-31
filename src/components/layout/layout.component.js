@@ -1,10 +1,12 @@
 import renderService from '@/core/services/render.service'
+import { $ML } from '@/core/mylib/mylib.lib'
+import ChildComponent from '@/core/component/child.component'
 
 import template from './layout.template.html'
 import styles from './layout.module.scss'
-import { $ML } from '@/core/mylib/mylib.lib'
+
 import { Header } from './header/header.component'
-import ChildComponent from '@/core/component/child.component'
+import { Notification } from './notification/notification.component'
 
 export class Layout extends ChildComponent {
 	constructor({ router, children }) {
@@ -13,7 +15,7 @@ export class Layout extends ChildComponent {
 		this.children = children
 	}
 	render() {
-		this.element = renderService.htmlToElement(template, [], styles)
+		this.element = renderService.htmlToElement(template, [Notification], styles)
 
 		const mainElement = $ML(this.element).find('main')
 

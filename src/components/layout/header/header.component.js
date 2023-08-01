@@ -18,6 +18,11 @@ export class Header extends ChildComponent {
 		this.store.addObserver(this)
 
 		this.router = router
+
+		this.userItem = new UserItem({
+			avatarPath:	'/',
+			name: 'Dron'
+		})
 	}
 
 	update(){
@@ -27,12 +32,10 @@ export class Header extends ChildComponent {
 
 		if(this.user) {
 			authSideElement.show()
+			this.userItem.update(this.user)
+			this.router.navigate('/')
 		} else {
 			authSideElement.hide()
-		}
-
-		if(this.user && this.router.getCurrentPath() === '/auth') {
-			this.router.navigate('/')
 		}
 	}
 
@@ -45,11 +48,7 @@ export class Header extends ChildComponent {
 					router: this.router
 				}),
 				Search,
-				new UserItem({
-					avatarPath:
-						'https://prisma-blog-ebon.vercel.app/blog/posts/type-safe_js_with_JsDoc.png',
-					name: 'Dron'
-				})
+				this.userItem
 			],
 			styles
 		)

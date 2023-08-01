@@ -69,6 +69,15 @@ class MyLib {
 
 	/* EVENTS */
 
+	on(eventType, callback) {
+		if(typeof eventType !== 'string' || typeof callback !== 'function') {
+			throw new Error('eventType must be a string and callback must be a function')
+		}
+
+		this.element.addEventListener(eventType, callback)
+		return this
+	}
+
 	click(callback) {
 		this.element.addEventListener('click', callback)
 		return this

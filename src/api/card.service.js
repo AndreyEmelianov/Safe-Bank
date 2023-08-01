@@ -1,10 +1,12 @@
 import { myQuery } from '@/core/my-query/my-query.lib'
 import { NotificationService } from '@/core/services/notification.service'
+import { Store } from '@/core/store/store'
 
 export class CardService {
 	#BASE_URL = '/cards'
 
 	constructor() {
+		this.store = Store.getInstance()
 		this.notificationService = new NotificationService()
 	}
 

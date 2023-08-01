@@ -20,9 +20,8 @@ export class Button extends ChildComponent {
 
 		$ML(this.element).html(this.children).click(this.onClick)
 
-		if (this.variant) {
-			$ML(this.element).addClass(styles[this.variant])
-		}
+		if (this.variant) $ML(this.element).addClass(styles[this.variant])
+		
 
 		return this.element
 	}

@@ -9,7 +9,7 @@ export class Field extends ChildComponent {
 	constructor({ placeholder, type = 'text', value = '', name, variant }) {
 		super()
 
-		if (!name) throw new Error('Please fiil field "name"!')
+		if (!name) throw new Error('Please fill field "name"!')
 
 		this.placeholder = placeholder
 		this.type = type

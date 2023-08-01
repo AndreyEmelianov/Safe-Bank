@@ -78,9 +78,9 @@ class MyLib {
 
 	submit(onSubmit) {
 		if(this.element.tagName.toLowerCase() === 'form') {
-			this.element.addEventListener('submit', event => {
-				event.preventDefault()
-				onSubmit(event)
+			this.element.addEventListener('submit', e => {
+				e.preventDefault()
+				onSubmit(e)
 			})
 		} else {
 			throw new Error('Element must be a form')

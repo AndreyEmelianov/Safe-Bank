@@ -6,7 +6,7 @@ export class CardService {
 	#BASE_URL = '/cards'
 
 	constructor() {
-		this.store = Store.getInstance()
+		this.store = Store.getInstance().state
 		this.notificationService = new NotificationService()
 	}
 
@@ -24,23 +24,26 @@ export class CardService {
 			onSuccess
 		})
 	}
-	
+
 	/**
 	 * @param {number} amount
-	 * 
+	 *
 	 * @param {'top-up' | 'withdrawal'} type
-	 * 
+	 *
 	 * @param {function} onSuccess
-	 * 
+	 *
 	 * @return {Promise}
 	 */
 	updateBalance(amount, type, onSuccess) {
 		return myQuery({
 			path: `${this.#BASE_URL}/balance/${type}`,
 			method: 'PATCH',
-			body: {amount: +amount},
+			body: { amount: +amount },
 			onSuccess: () => {
-				this.notificationService.show('success', 'Balance successfully changed!')
+				this.notificationService.show(
+					'success',
+					'Balance successfully changed!'
+				)
 				onSuccess()
 			}
 		})
@@ -51,10 +54,10 @@ export class CardService {
 	 * @param {Object} body
 	 * @param {number} body.amount
 	 * @param {string} body.toCardNumber
-	 * @param {Function} onSuccess 
+	 * @param {Function} onSuccess
 	 * @returns {Promise}
 	 */
-	transfer({amount, toCardNumber}, onSuccess){
+	transfer({ amount, toCardNumber }, onSuccess) {
 		return myQuery({
 			path: `${this.#BASE_URL}/transfer-money`,
 			method: 'PATCH',
@@ -63,8 +66,11 @@ export class CardService {
 				fromCardNumber: this.store.user.card.number,
 				toCardNumber
 			},
-			onSuccess:() => {
-				this.notificationService.show('success', 'Transfer successfully completed!')
+			onSuccess: () => {
+				this.notificationService.show(
+					'success',
+					'Transfer successfully completed!'
+				)
 				onSuccess()
 			}
 		})

@@ -27,13 +27,10 @@ export async function myQuery({
 	onError = null,
 	onSuccess = null
 }) {
-	let isLoading = true
-	let error = null
-	let data = null
+	let isLoading = true,
+		error = null,
+		data = null
 	const url = `${SERVER_URL}/api${path}`
-
-	/* ACCESS-TOKEN FROM LS */
-	
 
 	const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY)
 
@@ -58,6 +55,7 @@ export async function myQuery({
 
 		if (response.ok) {
 			data = await response.json()
+
 			if (onSuccess) {
 				onSuccess(data)
 			}

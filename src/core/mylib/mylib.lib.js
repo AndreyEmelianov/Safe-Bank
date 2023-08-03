@@ -27,6 +27,11 @@ class MyLib {
 		}
 	}
 
+	findAll(selector) {
+		const elements = this.element.querySelectorAll(selector)
+		return Array.from(elements).map(element => new MyLib(element))
+	}
+
 	/* INSERT */
 
 	append(childElement) {
@@ -70,8 +75,10 @@ class MyLib {
 	/* EVENTS */
 
 	on(eventType, callback) {
-		if(typeof eventType !== 'string' || typeof callback !== 'function') {
-			throw new Error('eventType must be a string and callback must be a function')
+		if (typeof eventType !== 'string' || typeof callback !== 'function') {
+			throw new Error(
+				'eventType must be a string and callback must be a function'
+			)
 		}
 
 		this.element.addEventListener(eventType, callback)
@@ -86,7 +93,7 @@ class MyLib {
 	/* FORM */
 
 	submit(onSubmit) {
-		if(this.element.tagName.toLowerCase() === 'form') {
+		if (this.element.tagName.toLowerCase() === 'form') {
 			this.element.addEventListener('submit', e => {
 				e.preventDefault()
 				onSubmit(e)
@@ -152,12 +159,12 @@ class MyLib {
 
 	/* STYLES */
 
-	show(){
+	show() {
 		this.element.style.removeProperty('display')
 		return this
 	}
 
-	hide(){
+	hide() {
 		this.element.style.display = 'none'
 		return this
 	}

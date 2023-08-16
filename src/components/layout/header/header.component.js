@@ -20,17 +20,17 @@ export class Header extends ChildComponent {
 		this.router = router
 
 		this.userItem = new UserItem({
-			avatarPath:	'/',
+			avatarPath: '/',
 			name: 'Dron'
 		})
 	}
 
-	update(){
+	update() {
 		this.user = this.store.state.user
 
 		const authSideElement = $ML(this.element).find('#auth-side')
 
-		if(this.user) {
+		if (this.user) {
 			authSideElement.show()
 			this.userItem.update(this.user)
 			this.router.navigate('/')

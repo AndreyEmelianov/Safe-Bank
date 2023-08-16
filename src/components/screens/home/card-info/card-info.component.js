@@ -25,16 +25,14 @@ export class CardInfo extends ChildComponent {
 	}
 
 	#addListeners() {
-		document.addEventListener(BALANCE_UPDATED, () => this.#onBalanceUpdated())
+		document.addEventListener(BALANCE_UPDATED, this.#onBalanceUpdated)
 	}
 
 	#removeListeners() {
-		document.removeEventListener(BALANCE_UPDATED, () =>
-			this.#onBalanceUpdated()
-		)
+		document.removeEventListener(BALANCE_UPDATED, this.#onBalanceUpdated)
 	}
 
-	#onBalanceUpdated() {
+	#onBalanceUpdated = () => {
 		this.fetchData()
 	}
 

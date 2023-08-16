@@ -5,9 +5,11 @@ export class TransactionService {
 
 	getAll(onSuccess) {
 		return myQuery({
-			path: this.#BASE_URL + `?${new URLSearchParams({
-				orderBy: 'desc'
-			})}`,
+			path:
+				this.#BASE_URL +
+				`?${new URLSearchParams({
+					orderBy: 'desc'
+				})}`,
 			onSuccess
 		})
 	}
